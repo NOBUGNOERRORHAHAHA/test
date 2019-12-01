@@ -30,7 +30,7 @@ class TestIOS:
     def tearDown(self):
         pass
 
-    # 3742 首次安装信息
+    '''3742 首次安装信息'''
     @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
     def test_firstInstall(self):
         avc = self.avcIOS
@@ -40,8 +40,7 @@ class TestIOS:
         avc.slide()
         avc.agreeClick()
 
-    "3772设置不同的分辨率进入房间"
-
+    '''3772设置不同的分辨率进入房间'''
     @pytest.mark.parametrize("resolution", [ac.Video_Resolution.video_360P, ac.Video_Resolution.video_480P,
                                             ac.Video_Resolution.video_720p])
     @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
@@ -56,8 +55,7 @@ class TestIOS:
         sleep(2)
         avc.leaveChannel()
 
-        # 设置不同的网络检查网络质量回调是否符合预期
-
+    # 设置不同的网络检查网络质量回调是否符合预期
     @pytest.mark.tags(case_tag.iOS, case_tag.HIGH, case_tag.MANUAL, case_tag.FUNCTIONALITY)
     def test_checkNetworkQuality(self):
         avc = self.avc
@@ -70,21 +68,7 @@ class TestIOS:
         pytest_utils.execute_manual_step("设置下行网络，丢包60%")
         assert verify_utils.network_quality() == "Bad"
 
-    # #设置不同的网络检查网络质量回调是否符合预期
-    # @pytest.mark.tags(case_tag.iOS, case_tag.HIGH, case_tag.MANUAL, case_tag.FUNCTIONALITY)
-    # def test_checkNetworkQuality(self):
-    #     avc = self.avcIOS
-    #     avc.setCurrentDevice(0)
-    #     avc.startAVC(self.packageName)
-    #     pytest_utils.execute_manual_step("设置下行网络，丢包100%")
-    #     assert  verify_utils.network_quality() == "Unkown"
-    #     pytest_utils.execute_manual_step("设置下行网络，丢包0")
-    #     assert verify_utils.network_quality() == "Good"
-    #     pytest_utils.execute_manual_step("设置下行网络，丢包60%")
-    #     assert verify_utils.network_quality() == "Bad"
-
     '''日志上传'''
-
     @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
     def test_log(self):
         avc = self.avcIOS
